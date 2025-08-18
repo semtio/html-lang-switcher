@@ -52,22 +52,8 @@ final class Plugin {
         $locales = [
             ''      => __('Use site default language', 'html-lang-switcher'),
             'en'    => 'English',
-            'en-US' => 'English (US)',
-            'en-GB' => 'English (UK)',
-            'pl'    => 'Polski',
             'ru'    => 'Русский',
-            'uk'    => 'Українська',
-            'de-DE' => 'Deutsch (DE)',
-            'fr-FR' => 'Français',
-            'es-ES' => 'Español',
-            'ar'    => 'العربية',
-            'he'    => 'עברית',
-            'fa'    => 'فارسی',
-            'ur'    => 'اردو',
-            'zh-CN' => '简体中文 (CN)',
-            'zh-TW' => '繁體中文 (TW)',
-            'ja'    => '日本語',
-            'ko'    => '한국어',
+            'es-ES' => 'Español (España)',
         ];
 
         return apply_filters('hls_supported_locales', $locales);
