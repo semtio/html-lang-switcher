@@ -62,9 +62,9 @@ final class Plugin {
             'en'    => 'English',
             'ru'    => 'Русский',
             'es-ES' => 'Español',
-            'it-it' => 'it-it',
-            'es-ar' => 'es-ar',
-            'de-de' => 'de-de',
+            'it-it' => 'it_it',
+            'es-ar' => 'es_ar',
+            'de-de' => 'de_de',
         );
         return apply_filters('hls_supported_locales', $locales);
     }
