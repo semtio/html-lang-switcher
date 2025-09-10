@@ -71,7 +71,7 @@ final class Plugin
             'ru'    => 'ru',
             'es-ES' => 'es-ES',
             'es-AR' => 'es-AR',
-            'en-In' => 'en-In',
+            'en-IN' => 'en-IN',
             'it-IT' => 'it-IT',
             'de-DE' => 'de-DE',
         );
