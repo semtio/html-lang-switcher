@@ -70,8 +70,9 @@ final class Plugin
             'en'    => 'en',
             'ru'    => 'ru',
             'es-ES' => 'es-ES',
-            'it-IT' => 'it-IT',
             'es-AR' => 'es-AR',
+            'es-In' => 'es-In',
+            'it-IT' => 'it-IT',
             'de-DE' => 'de-DE',
         );
         return apply_filters('hls_supported_locales', $locales);
