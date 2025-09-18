@@ -224,18 +224,19 @@ final class Plugin
 
     public static function add_hreflang_tags()
     {
-        // Всегда выводим self-referencing hreflang для одиночных записей.
-        if (! is_singular()) return;
+        if (! is_singular()) {
+            return;
+        }
 
         $post_id = get_the_ID();
-        if (! $post_id) return;
+        if (! $post_id) {
+            return;
+        }
 
-        // Берём локаль из мета (если задана), иначе локаль сайта.
         $locale = get_post_meta($post_id, self::META_KEY, true);
-        $locale = is_string($locale) && $locale !== '' ? $locale : get_locale();
-
-        // Минимальный безопасный вывод: один тег (альтернативный, указывающий на саму страницу)
-        echo '<link rel="alternate" hreflang="' . esc_attr($locale) . '" href="' . esc_url(get_permalink($post_id)) . '" />' . "\n";
+        if (! empty($locale) && $locale !== get_locale()) {
+            echo '<link rel="alternate" hreflang="' . esc_attr($locale) . '" href="' . esc_url(get_permalink($post_id)) . '" />' . "\n";
+        }
     }
 }
 
