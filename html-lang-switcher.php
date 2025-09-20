@@ -224,19 +224,47 @@ final class Plugin
 
     public static function add_hreflang_tags()
     {
-        if (! is_singular()) {
+        // Выводим только на индексируемых фронтенд-страницах.
+        if ( is_admin() || is_404() || is_search() || is_feed() || is_preview() ) {
             return;
         }
 
-        $post_id = get_the_ID();
-        if (! $post_id) {
+        // Получаем атрибуты <html> и извлекаем значение lang.
+        $html_lang = '';
+        $attrs = get_language_attributes(); // вернёт строку вида: lang="ru-RU" dir="ltr"
+        if ( $attrs && preg_match('/lang="([A-Za-z0-9_\-]+)"/i', $attrs, $m) ) {
+            $html_lang = $m[1];
+        }
+        if ( $html_lang === '' ) {
+            // Фолбэк – локаль сайта.
+            $html_lang = get_locale();
+        }
+
+        // Оставляем только часть до дефиса/подчёркивания, приводим к нижнему регистру.
+        $short = strtolower(preg_replace('/[\-_].*$/', '', $html_lang));
+        if ( $short === '' ) {
+            return; // некорректное значение – ничего не выводим.
+        }
+
+        // Канонический абсолютный URL текущей страницы без query/anchor.
+        $canonical = '';
+        if ( function_exists('wp_get_canonical_url') ) {
+            $canonical = wp_get_canonical_url();
+        }
+        if ( ! $canonical ) {
+            global $wp;
+            $req = isset($wp->request) ? trim($wp->request) : '';
+            $canonical = home_url($req === '' ? '/' : '/' . ltrim($req, '/') . '/');
+        }
+        // Страховка: убрать возможные query/fragment, если попали.
+        $canonical = strtok($canonical, '#?');
+
+        if ( ! $canonical ) {
             return;
         }
 
-        $locale = get_post_meta($post_id, self::META_KEY, true);
-        if (! empty($locale) && $locale !== get_locale()) {
-            echo '<link rel="alternate" hreflang="' . esc_attr($locale) . '" href="' . esc_url(get_permalink($post_id)) . '" />' . "\n";
-        }
+        echo '<link rel="alternate" hreflang="' . esc_attr($short) . '" href="' . esc_url($canonical) . '" />' . "\n";
+        echo '<link rel="alternate" hreflang="x-default" href="' . esc_url($canonical) . '" />' . "\n";
     }
 }
 
