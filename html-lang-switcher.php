@@ -47,7 +47,7 @@ final class Plugin
         }
 
         add_filter('language_attributes', array(__CLASS__, 'filter_language_attributes'), 20, 2);
-        add_action('wp_head', array(__CLASS__, 'add_hreflang_tags'));
+        // add_action('wp_head', array(__CLASS__, 'add_hreflang_tags'));
     }
 
     private static function is_multilang_active()
