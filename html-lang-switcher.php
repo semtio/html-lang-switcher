@@ -66,15 +66,17 @@ final class Plugin
     public static function supported_locales()
     {
         $locales = array(
-            ''      => __('Use site default language', 'html-lang-switcher'),
-            'en'    => 'en',
-            'ru'    => 'ru',
+            '' => __('Use site default language', 'html-lang-switcher'),
+            'ru' => 'ru',
             'es-ES' => 'es-ES',
             'es-AR' => 'es-AR',
+            'es' => 'es',
+            'en' => 'en',
             'en-IN' => 'en-IN',
             'it-IT' => 'it-IT',
-            'de' => 'de',
+            'it' => 'it',
             'de-DE' => 'de-DE',
+            'de' => 'de',
         );
         return apply_filters('hls_supported_locales', $locales);
     }
