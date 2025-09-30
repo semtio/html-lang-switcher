@@ -68,6 +68,7 @@ final class Plugin
         $locales = array(
             '' => __('Use site default language', 'html-lang-switcher'),
             'ru' => 'ru',
+            'ru-KZ' => 'ru-KZ',
             'es-ES' => 'es-ES',
             'es-AR' => 'es-AR',
             'es' => 'es',
