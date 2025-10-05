@@ -74,6 +74,7 @@ final class Plugin
             'en-IN' => 'en-IN',
             'it-IT' => 'it-IT',
             'de-DE' => 'de-DE',
+            'de-CH' => 'de-CH',
         );
         return apply_filters('hls_supported_locales', $locales);
     }
