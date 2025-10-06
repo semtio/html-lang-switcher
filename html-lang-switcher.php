@@ -236,7 +236,20 @@ final class Plugin
 
         $locale = get_post_meta($post_id, self::META_KEY, true);
         if (! empty($locale) && $locale !== get_locale()) {
-            echo '<link rel="alternate" hreflang="' . esc_attr($locale) . '" href="' . esc_url(get_permalink($post_id)) . '" />' . "\n";
+            // Проверяем, есть ли уже hreflang тег для данной локали
+            $current_url = get_permalink($post_id);
+            $current_url_without_slash = rtrim($current_url, '/');
+
+            ob_start();
+            wp_head();
+            $existing_head = ob_get_clean();
+
+            // Проверяем наличие hreflang тега с данной локалью и URL (с учетом слеша и без)
+            $pattern = '/<link[^>]*rel=["\']alternate["\'][^>]*hreflang=["\']' . preg_quote($locale, '/') . '["\'][^>]*href=["\'](' . preg_quote($current_url, '/') . '|' . preg_quote($current_url_without_slash, '/') . ')["\'][^>]*\/?>/i';
+
+            if (! preg_match($pattern, $existing_head)) {
+                echo '<link rel="alternate" hreflang="' . esc_attr($locale) . '" href="' . esc_url($current_url) . '" />' . "\n";
+            }
         }
     }
 }
