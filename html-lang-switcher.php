@@ -73,6 +73,7 @@ final class Plugin
             'es-ES' => 'es-ES',
             'es-AR' => 'es-AR',
             'en-IN' => 'en-IN',
+            'es-CL' => 'es-CL',
             'fr' => 'fr',
             'it' => 'it',
             'it-IT' => 'it-IT',
