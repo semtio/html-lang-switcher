@@ -81,6 +81,8 @@ final class Plugin
             'de-DE' => 'de-DE',
             'de-CH' => 'de-CH',
             'tr' => 'tr',
+            'az' => 'az',
+            'az-AZ' => 'az-AZ',
         );
         return apply_filters('hls_supported_locales', $locales);
     }
