@@ -83,6 +83,8 @@ final class Plugin
             'tr' => 'tr',
             'az' => 'az',
             'az-AZ' => 'az-AZ',
+            'kz' => 'kz',
+            'ru-KZ' => 'ru-KZ',
         );
         return apply_filters('hls_supported_locales', $locales);
     }
